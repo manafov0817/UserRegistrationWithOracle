@@ -1,0 +1,9 @@
+D:\Programming\ATL\Task\OracleTask\OracleTask.Entity\bin\Debug\netcoreapp3.1\OracleTask.Entity.deps.json
+D:\Programming\ATL\Task\OracleTask\OracleTask.Entity\bin\Debug\netcoreapp3.1\OracleTask.Entity.dll
+D:\Programming\ATL\Task\OracleTask\OracleTask.Entity\bin\Debug\netcoreapp3.1\OracleTask.Entity.pdb
+D:\Programming\ATL\Task\OracleTask\OracleTask.Entity\obj\Debug\netcoreapp3.1\OracleTask.Entity.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programming\ATL\Task\OracleTask\OracleTask.Entity\obj\Debug\netcoreapp3.1\OracleTask.Entity.AssemblyInfoInputs.cache
+D:\Programming\ATL\Task\OracleTask\OracleTask.Entity\obj\Debug\netcoreapp3.1\OracleTask.Entity.AssemblyInfo.cs
+D:\Programming\ATL\Task\OracleTask\OracleTask.Entity\obj\Debug\netcoreapp3.1\OracleTask.Entity.csproj.CoreCompileInputs.cache
+D:\Programming\ATL\Task\OracleTask\OracleTask.Entity\obj\Debug\netcoreapp3.1\OracleTask.Entity.dll
+D:\Programming\ATL\Task\OracleTask\OracleTask.Entity\obj\Debug\netcoreapp3.1\OracleTask.Entity.pdb

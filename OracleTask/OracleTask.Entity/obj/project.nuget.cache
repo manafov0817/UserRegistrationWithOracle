@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "WgymesqZFJ14ev9chY/A1u6BA+H39vFWfENnewTlhk1I4mPmIyZ3rPPlB/db94iEldKXsr5R2z3FJWBHFpPmcA==",
+  "success": true,
+  "projectFilePath": "D:\\Programming\\ATL\\Task\\JqueryImprovement\\OracleTask\\OracleTask.Entity\\OracleTask.Entity.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\fluentvalidation\\10.3.3\\fluentvalidation.10.3.3.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\fluentvalidation.aspnetcore\\10.3.3\\fluentvalidation.aspnetcore.10.3.3.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\10.3.3\\fluentvalidation.dependencyinjectionextensions.10.3.3.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.1.0\\microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}
