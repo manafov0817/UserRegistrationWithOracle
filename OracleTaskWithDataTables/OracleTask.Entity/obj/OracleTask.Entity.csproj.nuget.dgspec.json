@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Programming\\ATL\\Task\\OracleTask2\\OracleTask.Entity\\OracleTask.Entity.csproj": {}
+    "D:\\Programming\\ATL\\Task\\JqueryImprovement\\OracleTaskWithDataTables\\OracleTask.Entity\\OracleTask.Entity.csproj": {}
   },
   "projects": {
-    "D:\\Programming\\ATL\\Task\\OracleTask2\\OracleTask.Entity\\OracleTask.Entity.csproj": {
+    "D:\\Programming\\ATL\\Task\\JqueryImprovement\\OracleTaskWithDataTables\\OracleTask.Entity\\OracleTask.Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Programming\\ATL\\Task\\OracleTask2\\OracleTask.Entity\\OracleTask.Entity.csproj",
+        "projectUniqueName": "D:\\Programming\\ATL\\Task\\JqueryImprovement\\OracleTaskWithDataTables\\OracleTask.Entity\\OracleTask.Entity.csproj",
         "projectName": "OracleTask.Entity",
-        "projectPath": "D:\\Programming\\ATL\\Task\\OracleTask2\\OracleTask.Entity\\OracleTask.Entity.csproj",
+        "projectPath": "D:\\Programming\\ATL\\Task\\JqueryImprovement\\OracleTaskWithDataTables\\OracleTask.Entity\\OracleTask.Entity.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\Programming\\ATL\\Task\\OracleTask2\\OracleTask.Entity\\obj\\",
+        "outputPath": "D:\\Programming\\ATL\\Task\\JqueryImprovement\\OracleTaskWithDataTables\\OracleTask.Entity\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -177,10 +177,10 @@ namespace OracleTask.Data.Concrete.ADO.NET
 
         public User GetById(int id)
         {
-           
+
             OracleConnection con = new OracleConnection(ConnectionString.GetConnectionString());
 
-             try
+            try
             {
                 con.Open();
             }
@@ -209,11 +209,10 @@ namespace OracleTask.Data.Concrete.ADO.NET
                 // input
                 OracleParameter input = new OracleParameter();
                 input.Value = id;
-                input.ParameterName = "id";
-                input.OracleDbType = OracleDbType.Decimal;
-                input.Value = ParameterDirection.Input;
+                input.ParameterName = "ID";
 
                 cmd.Parameters.Add(input);
+
 
                 OracleDataAdapter da = new OracleDataAdapter(cmd);
 
@@ -251,18 +250,18 @@ namespace OracleTask.Data.Concrete.ADO.NET
                     break;
                 }
 
-                 ds.Dispose();
+                ds.Dispose();
                 da.Dispose();
                 output.Dispose();
                 cmd.Dispose();
             }
 
-             con.Dispose();
+            con.Dispose();
 
             return user;
         }
 
-        public  void Update(User user)
+        public void Update(User user)
         {
 
            

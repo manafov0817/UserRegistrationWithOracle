@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fkkujoGWV+DArYx2vOk77hghrUpqh9IsLNILcHY7lFDubYp40rWwBg7lJgNIInPgLic0LebZNcbF/ejl68WWog==",
+  "dgSpecHash": "rULIz4yiExeTaettsEjnubJm5a1aefXnw0WCq+lPljfXwvxZ/iE2lutQ2zObvvcrULbNDstxsbxtrFuli8ooJA==",
   "success": true,
-  "projectFilePath": "D:\\Programming\\ATL\\Task\\OracleTask2\\OracleTask.Data\\OracleTask.Data.csproj",
+  "projectFilePath": "D:\\Programming\\ATL\\Task\\JqueryImprovement\\OracleTaskWithDataTables\\OracleTask.Data\\OracleTask.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.1\\microsoft.netcore.platforms.5.0.1.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",

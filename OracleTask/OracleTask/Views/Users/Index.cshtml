@@ -7,11 +7,10 @@
 <h1>Users</h1>
 
  
-<p>
-	
+<p>	
 	<a onclick="showInPopup('@Url.Action("AddOrEdit","Users",null,Context.Request.Scheme)','New User')" class="btn btn-success text-white">New User</a>
-
 </p>
+
 
 <div id="view-all">
     @await Html.PartialAsync("_ViewAll", Model)

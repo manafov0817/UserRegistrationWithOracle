@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5Co6xsrJ/5nRuoG5V69pstCPhhhdqSD6qMWnbaIp37HSbpezmfSlpls2j3yl7D3EChpPnZQIcRZAlJrmRCFN+g==",
+  "dgSpecHash": "GQEzkTMRmnRxA+u61ue49zHuZivj1wzT2hsyhMDQB26U01oEsL4OhJtc9iNNlQkO+p3meIXG4nn7X48ooc1X0w==",
   "success": true,
-  "projectFilePath": "D:\\Programming\\ATL\\Task\\OracleTask2\\OracleTask.Entity\\OracleTask.Entity.csproj",
+  "projectFilePath": "D:\\Programming\\ATL\\Task\\JqueryImprovement\\OracleTaskWithDataTables\\OracleTask.Entity\\OracleTask.Entity.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

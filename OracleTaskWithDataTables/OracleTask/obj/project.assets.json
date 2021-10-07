@@ -7287,11 +7287,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Programming\\ATL\\Task\\OracleTask2\\OracleTask\\OracleTask.csproj",
+      "projectUniqueName": "D:\\Programming\\ATL\\Task\\JqueryImprovement\\OracleTaskWithDataTables\\OracleTask\\OracleTask.csproj",
       "projectName": "OracleTask",
-      "projectPath": "D:\\Programming\\ATL\\Task\\OracleTask2\\OracleTask\\OracleTask.csproj",
+      "projectPath": "D:\\Programming\\ATL\\Task\\JqueryImprovement\\OracleTaskWithDataTables\\OracleTask\\OracleTask.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\Programming\\ATL\\Task\\OracleTask2\\OracleTask\\obj\\",
+      "outputPath": "D:\\Programming\\ATL\\Task\\JqueryImprovement\\OracleTaskWithDataTables\\OracleTask\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7308,11 +7308,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\Programming\\ATL\\Task\\OracleTask2\\OracleTask.Data\\OracleTask.Data.csproj": {
-              "projectPath": "D:\\Programming\\ATL\\Task\\OracleTask2\\OracleTask.Data\\OracleTask.Data.csproj"
+            "D:\\Programming\\ATL\\Task\\JqueryImprovement\\OracleTaskWithDataTables\\OracleTask.Data\\OracleTask.Data.csproj": {
+              "projectPath": "D:\\Programming\\ATL\\Task\\JqueryImprovement\\OracleTaskWithDataTables\\OracleTask.Data\\OracleTask.Data.csproj"
             },
-            "D:\\Programming\\ATL\\Task\\OracleTask2\\OracleTask.Entity\\OracleTask.Entity.csproj": {
-              "projectPath": "D:\\Programming\\ATL\\Task\\OracleTask2\\OracleTask.Entity\\OracleTask.Entity.csproj"
+            "D:\\Programming\\ATL\\Task\\JqueryImprovement\\OracleTaskWithDataTables\\OracleTask.Entity\\OracleTask.Entity.csproj": {
+              "projectPath": "D:\\Programming\\ATL\\Task\\JqueryImprovement\\OracleTaskWithDataTables\\OracleTask.Entity\\OracleTask.Entity.csproj"
             }
           }
         }

@@ -37,11 +37,11 @@ namespace OracleTask.Models
                                  .Length(0, 50)
                                  .WithMessage("Minimum length of Email must be 1 and maximum length must be 50");
 
-            RuleFor(u => u.PasswordConfirm)
+            RuleFor(u => u.Password)
                                .NotEmpty()
-                               .WithMessage("Password Confirm cannot be empty")
+                               .WithMessage("Password cannot be empty")
                                .Length(0, 50)
-                               .WithMessage("Minimum length of PasswordConfirm must be 1 and maximum length must be 50");
+                               .WithMessage("Minimum length of Password must be 1 and maximum length must be 50");
 
             RuleFor(u => u.PasswordConfirm).Equal(customer => customer.Password)
                                  .WithMessage("Passwords does not match");

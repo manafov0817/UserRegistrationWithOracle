@@ -27,12 +27,12 @@ namespace OracleTask.Controllers
 
         public IActionResult Index()
         {
-            //List<User> users = _userRepository.GetAll().ToList();
+            List<User> users = _userRepository.GetAll().ToList();
 
             var usersDTO = new List<UserDTO>();
 
-            //foreach (var user in users)
-            //    usersDTO.Add(_mapper.Map<UserDTO>(user));
+            foreach (var user in users)
+                usersDTO.Add(_mapper.Map<UserDTO>(user));
 
 
             return View(usersDTO);
@@ -50,46 +50,45 @@ namespace OracleTask.Controllers
 
             var data = Newtonsoft.Json.JsonConvert.SerializeObject(
                 new
-                    {
-                        data = users
-                    });
+                {
+                    data = users
+                });
 
- 
+
             return Ok(data);
         }
 
-
-
-        public IActionResult Details(int? id)
-        {
-            return View();
-        }
         [HttpGet]
         public IActionResult Create()
         {
 
-            return PartialView("_AddUserPartial", new UserDTO());
+            return View(new UserDTO());
         }
 
 
         [HttpPost]
         public IActionResult Create(UserDTO userDTO)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    ModelState.AddModelError("", "Please Fill Correctly");
-            //    return View();
-            //}
+            if (ModelState.IsValid)
+            {
+                //Insert
+                if (userDTO.Id == 0)
+                {
+                    User user = _mapper.Map<User>(userDTO);
 
-            User user = _mapper.Map<User>(userDTO);
+                    _userRepository.Create(user);
 
-            _userRepository.Create(user);
+                }
 
-            return PartialView("_AddUserPartial", new UserDTO());
+
+
+                return Json(new { isValid = true });
+            }
+            return Json(new { isValid = false });
+
         }
 
-        // GET: Users/Edit/5
-        public IActionResult Edit(int id)
+         public IActionResult Edit(int id)
         {
 
             User user = _userRepository.GetById(id);
@@ -99,37 +98,55 @@ namespace OracleTask.Controllers
             return View(userDTO);
         }
 
-        // POST: Users/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Edit(UserDTO userDTO)
         {
 
             if (!_userRepository.ExistById(userDTO.Id))
             {
                 ModelState.AddModelError("", "This user doesn't exists");
-                return View(userDTO);
+                return Json(new { isValid = false });
+
             }
 
             User user = _mapper.Map<User>(userDTO);
 
-
             _userRepository.Update(user);
 
-            return RedirectToAction("Index", "Users");
+            return Json(new { isValid = true });
         }
 
-        // GET: Users/Delete/5
         public IActionResult Delete(int id)
+        {
+
+            if (id == 0)
+            {
+                return NotFound();
+            }
+
+            var user = _userRepository.GetById(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
         {
 
             _userRepository.Delete(id);
 
-            return RedirectToAction("Index", "Users");
+            List<UserDTO> usersDTO = new List<UserDTO>();
+
+            foreach (var user in _userRepository.GetAll().ToList())
+                usersDTO.Add(_mapper.Map<UserDTO>(user));
+
+            return Json(new object());
         }
-
-
     }
 }

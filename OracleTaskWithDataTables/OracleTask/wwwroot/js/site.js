@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿ 
+$(document).ready(function () {
 
 
     let loadFuncttion = function () {
@@ -22,21 +23,32 @@
                 { "data": "Email", "name": "Email", "autoWidth": true },
                 { "data": "Password", "name": "Password", "autoWidth": true },
 
-                //{
-                //    "data": "Id",
-                //    "render": function (data) {
-                //        return `<a class='btn btn-warning' style="display:inline-block; width:100%" href='Users/Edit/${data}'
-                //                data-toggle="ajax-modal" data-target="#editUser">${data}</a>`
-                //    },
-                //    "name": "Edit"
-                //},
-                //{
-                //    "data": "Id",
-                //    "render": function (data) {
-                //        return `<a class='btn btn-danger' style="display:inline-block; width:100%" href='Users/Delete/${data}'>${data}</a>`
-                //    },
-                //    "name": "Delete"
-                //}
+                {
+                    "data": "Id",
+                    "render": function (data) {
+                        return `<a onclick = "showInEdit('Users/Edit/${data}','Update User')"
+                                 class= "btn btn-info text-white" > <i class="fas fa-pencil-alt"></i> Edit</a >`
+                    },
+
+
+
+
+
+                    "name": "Edit"
+                },
+                {
+                    "data": "Id",
+                    "render": function (data) {
+                        return ` <form action = "Users/Delete/${data}" method = "Post" onsubmit = "return jQueryAjaxDelete(this)" class= "d-inline" >
+                                    <input type="hidden" data-val="true" data-val-required="The Id field is required." id="item_Id" name="item.Id" value="${data}">
+                                        <input type="submit" value="Delete" class="btn btn-danger" />
+						         </form>`
+                    },
+                    "name": "Delete"
+
+
+                        
+                }
             ]
 
 
@@ -45,72 +57,115 @@
 
     loadFuncttion();
 
-
-    var holderElement = $('#PlaceHolder');
-
-    var editHolderElement = $('.EditHolder');
-
-
-    $('button[data-toggle="ajax-modal"]').click(function (event) {
-        event.preventDefault();
-        var url = $(this).data('url');
-        $.get(url).done(function (data) {
-            holderElement.html(data);
-            holderElement.find('.modal').modal('show');
-
+    showInPopup = (url, title) => {
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function (res) {
+                $('#add-modal .modal-body').html(res);
+                $('#add-modal .modal-title').html(title);
+                $('#add-modal').modal('show');
+            }
         })
-    })
+    }
 
-
-
-
-    editHolderElement.on('click', '[data-save="modal"]', function (event) {
-
-        event.preventDefault();
-
-        var form = $(this).parents('.modal').find('form');
-
-        var actionUrl = form.attr('action');
-
-        var sendData = form.serialize();
-
-        $.post(actionUrl, sendData).done(function (data) {
-            holderElement.find('.modal').modal('hide');
-        });
-        loadFuncttion();
-
-    });
-
-
-    $('button[data-toggle="ajax-modal"]').click(function (event) {
-        event.preventDefault();
-        var url = $(this).data('url');
-        $.get(url).done(function (data) {
-            holderElement.html(data);
-            holderElement.find('.modal').modal('show');
-
+    showInEdit = (url, title) => {
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function (res) {
+                $('#edit-modal .modal-body').html(res);
+                $('#edit-modal .modal-title').html(title);
+                $('#edit-modal').modal('show');
+            }
         })
-    })
+    }
+
+    jQueryAjaxEdit = form => {
+        try {
+            $.ajax({
+                type: 'POST',
+                url: form.action,
+                data: new FormData(form),
+                contentType: false,
+                processData: false,
+                success: function (res) {
+                    if (res.isValid) {
+                        loadFuncttion();
+                        $('#edit-modal .modal-body').html('');
+                        $('#edit-modal .modal-title').html('');
+                        $('#edit-modal').modal('hide');
+                    }
+                    else
+                        $('#edit-modal .modal-body').html(res.html);
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            })
+            //to prevent default form submit event
+            return false;
+        } catch (ex) {
+            console.log(ex)
+        }
+    }
 
 
+    jQueryAjaxAdd = form => {
+        try {
+            $.ajax({
+                type: 'POST',
+                url: form.action,
+                data: new FormData(form),
+                contentType: false,
+                processData: false,
+                success: function (res) {
+                    if (res.isValid) {
+                        loadFuncttion();
+                        $('#add-modal .modal-body').html('');
+                        $('#add-modal .modal-title').html('');
+                        $('#add-modal').modal('hide');
+                    }
+                    else
+                        $('#add-modal .modal-body').html(res.html);
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            })
+            //to prevent default form submit event
+            return false;
+        } catch (ex) {
+            console.log(ex)
+        }
+    }
 
 
-    holderElement.on('click', '[data-save="modal"]', function (event) {
+    jQueryAjaxDelete = form => {
+        if (confirm('Are you sure to delete this record ?')) {
+            try {
+                $.ajax({
+                    type: 'POST',
+                    url: form.action,
+                    data: new FormData(form),
+                    contentType: false,
+                    processData: false,
+                    success: function () {
+                        loadFuncttion();
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                })
+            } catch (ex) {
+                console.log(ex)
+            }
+        }
 
-        event.preventDefault();
+        //prevent default form submit event
+        return false;
+    }
 
-        var form = $(this).parents('.modal').find('form');
-
-        var actionUrl = form.attr('action');
-
-        var sendData = form.serialize();
-
-        $.post(actionUrl, sendData).done(function (data) {
-            holderElement.find('.modal').modal('hide');
-        });
-        loadFuncttion();
-
-    });
 
 });
 

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ePjbHgZw2tkTGTN5Ia9+f8/YVOzwTvM09cw7ral/5TA7iRu4K/xQqfBNJu9vySxLtIO3XabTRc3lhc32vwYYaw==",
+  "dgSpecHash": "/XYP0oRadOgE/g81yCVTN9zmPNRPlT4/f22Es/R88sLKnkSTA0JQk8v/UGIQyqa7sDsA4RjDYzxSmfBZAYRFYg==",
   "success": true,
-  "projectFilePath": "D:\\Programming\\ATL\\Task\\OracleTask2\\OracleTask\\OracleTask.csproj",
+  "projectFilePath": "D:\\Programming\\ATL\\Task\\JqueryImprovement\\OracleTaskWithDataTables\\OracleTask\\OracleTask.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
