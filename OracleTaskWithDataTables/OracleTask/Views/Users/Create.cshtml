@@ -1,43 +1,73 @@
-﻿@model UserDTO
+﻿@model UserDTOCreate
 
 @{
-	ViewData["Title"] = "Create";
 	Layout = null;
 }
+
 <div class="row">
 	<div class="col-md-12">
-		<form asp-action="Create" onsubmit="return jQueryAjaxAdd(this);">
+		<form asp-action="Create" onsubmit="return jQueryAjaxAdd(this);" enctype="multipart/form-data">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<div class="form-group">
-				<label asp-for="Name" class="control-label"></label>
-				<input asp-for="Name" class="form-control" />
-				<span asp-validation-for="Name" class="text-danger"></span>
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label asp-for="Name" class="control-label"></label>
+					<input asp-for="Name" class="form-control" />
+					<span asp-validation-for="Name" class="text-danger"></span>
+				</div>
+				<div class="form-group col-md-6">
+					<label asp-for="Surname" class="control-label"></label>
+					<input asp-for="Surname" class="form-control" />
+					<span asp-validation-for="Surname" class="text-danger"></span>
+				</div>
 			</div>
-			<div class="form-group">
-				<label asp-for="Surname" class="control-label"></label>
-				<input asp-for="Surname" class="form-control" />
-				<span asp-validation-for="Surname" class="text-danger"></span>
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label asp-for="Username" class="control-label"></label>
+					<input asp-for="Username" class="form-control" />
+					<span asp-validation-for="Username" class="text-danger"></span>
+				</div>
+				<div class="form-group col-md-6">
+					<label asp-for="Email" class="control-label"></label>
+					<input asp-for="Email" class="form-control" />
+					<span asp-validation-for="Email" class="text-danger"></span>
+				</div>
 			</div>
-			<div class="form-group">
-				<label asp-for="Username" class="control-label"></label>
-				<input asp-for="Username" class="form-control" />
-				<span asp-validation-for="Username" class="text-danger"></span>
+
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label asp-for="Password" class="control-label"></label>
+					<input asp-for="Password" class="form-control" />
+					<span asp-validation-for="Password" class="text-danger"></span>
+				</div>
+				<div class="form-group col-md-6">
+					<label asp-for="PasswordConfirm" class="control-label"></label>
+					<input asp-for="PasswordConfirm" class="form-control" />
+					<span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+				</div>
 			</div>
-			<div class="form-group">
-				<label asp-for="Email" class="control-label"></label>
-				<input asp-for="Email" class="form-control" />
-				<span asp-validation-for="Email" class="text-danger"></span>
+			<div class="row">
+
+
+				<div class="form-group col-md-12">
+
+					<a onclick="showInPopupLocation('@Url.Action("SetLocation", "Users")','40.374236', '49.836762','Click map to set')"
+					   class="btn btn-success text-white col-md-12">Choose Born Place</a>
+
+					<input name="Location.Longitude" type="text" hidden id="lngVal" class="btn btn-primary" value="">
+					<input name="Location.Latitude" type="text" hidden id="latVal" class="btn btn-primary" value="">
+					<input name="Location.MarkAs" type="text" hidden id="markVal" class="btn btn-primary" value="">
+
+				</div>
+
 			</div>
-			<div class="form-group">
-				<label asp-for="Password" class="control-label"></label>
-				<input asp-for="Password" class="form-control" />
-				<span asp-validation-for="Password" class="text-danger"></span>
+
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label asp-for="Image" class="control-label"></label>
+					<input asp-for="Image" class="form-control border-0" type="file">
+				</div>
 			</div>
-			<div class="form-group">
-				<label asp-for="PasswordConfirm" class="control-label"></label>
-				<input asp-for="PasswordConfirm" class="form-control" />
-				<span asp-validation-for="PasswordConfirm" class="text-danger"></span>
-			</div>
+
 			<div class="form-group">
 				<div class="row">
 					<input type="submit" value="Create" class="m-md-auto col-md-9 btn btn-primary" />

@@ -2,13 +2,10 @@
 using OracleTask.Entity.Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
 
-namespace OracleTask.Data.Concrete.ADO.NET
+namespace OracleTask.Data.Concrete.ODP.NET
 {
     public class UserRepository : IUserRepository
     {
@@ -53,6 +50,7 @@ namespace OracleTask.Data.Concrete.ADO.NET
             }
             return result;
         }
+
         public ICollection<User> GetAll()
         {
             // create a connection to the database
@@ -76,8 +74,10 @@ namespace OracleTask.Data.Concrete.ADO.NET
             if (con.State == ConnectionState.Open)
             {
                 // create the command object and set attributes
-                OracleCommand cmd = new OracleCommand("PKC_USER.GET_ALL_USERS", con);
-                cmd.CommandType = CommandType.StoredProcedure;
+                OracleCommand cmd = new OracleCommand("PKC_USER.GET_ALL_USERS", con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
 
                 // create parameter object for the cursor
                 OracleParameter p_refcursor = new OracleParameter();
@@ -133,7 +133,7 @@ namespace OracleTask.Data.Concrete.ADO.NET
             return users;
         }
 
-        public   void Delete(int id)
+        public void Delete(int id)
         {
 
             OracleConnection con = new OracleConnection(ConnectionString.GetConnectionString());
@@ -173,7 +173,6 @@ namespace OracleTask.Data.Concrete.ADO.NET
             con.Dispose();
 
         }
-
 
         public User GetById(int id)
         {
@@ -264,10 +263,10 @@ namespace OracleTask.Data.Concrete.ADO.NET
         public void Update(User user)
         {
 
-           
+
             OracleConnection con = new OracleConnection(ConnectionString.GetConnectionString());
 
-             try
+            try
             {
                 con.Open();
             }
@@ -315,15 +314,15 @@ namespace OracleTask.Data.Concrete.ADO.NET
                 cmd.Dispose();
             }
 
-             con.Dispose();
+            con.Dispose();
 
-         }
+        }
 
-        public   bool ExistById(int id)
-        { 
+        public bool ExistById(int id)
+        {
             OracleConnection con = new OracleConnection(ConnectionString.GetConnectionString());
 
-             try
+            try
             {
                 con.Open();
             }
@@ -364,6 +363,244 @@ namespace OracleTask.Data.Concrete.ADO.NET
                 cmd.Dispose();
             }
             return exists;
+        }
+
+        public ICollection<User> GetAllWithProperties()
+        {
+            // create a connection to the database
+            // change values as needed for your environment
+            OracleConnection con = new OracleConnection(ConnectionString.GetConnectionString());
+
+            // attempt to open the connection
+            try
+            {
+                con.Open();
+            }
+            catch (OracleException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            ICollection<User> users = new List<User>();
+
+            // only call our methods if we are connected
+            // to the database
+            if (con.State == ConnectionState.Open)
+            {
+                // create the command object and set attributes
+                OracleCommand cmd = new OracleCommand("PKC_USER.GET_ALL_USERS_WITH_PROPERTIES", con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                // create parameter object for the cursor
+                OracleParameter p_refcursor = new OracleParameter();
+
+                // this is vital to set when using ref cursors
+                p_refcursor.OracleDbType = OracleDbType.RefCursor;
+
+                // this is a function return value so we must indicate that fact
+                p_refcursor.Direction = ParameterDirection.ReturnValue;
+
+                // add the parameter to the collection
+                cmd.Parameters.Add(p_refcursor);
+
+                // create a data adapter to use with the data set
+                OracleDataAdapter da = new OracleDataAdapter(cmd);
+
+                // create the data set
+                DataSet ds = new DataSet();
+
+                // fill the data set
+                da.Fill(ds);
+
+
+                foreach (DataTable table in ds.Tables)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+                        User user = new User()
+                        {
+                            Id = Convert.ToInt32(row[0]),
+                            Name = row[1].ToString(),
+                            Surname = row[2].ToString(),
+                            Username = row[3].ToString(),
+                            Email = row[4].ToString(),
+                            Password = row[5].ToString(),
+                            LocationLatitude = row[6].ToString(),
+                            LocationLongitude = row[7].ToString(),
+                            LocationMarkAs = row[8].ToString(),
+                            ImageName = row[9].ToString()
+                        };
+
+                        users.Add(user);
+
+                    }
+                }
+
+                // clean up our objects release resources
+                ds.Dispose();
+                da.Dispose();
+                p_refcursor.Dispose();
+                cmd.Dispose();
+            }
+
+            // clean up the connection object
+            con.Dispose();
+
+            return users;
+        }
+
+        public int GetIdByUsername(string username)
+        {
+
+            OracleConnection con = new OracleConnection(ConnectionString.GetConnectionString());
+
+            try
+            {
+                con.Open();
+            }
+            catch (OracleException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+
+            int id = 0;
+            if (con.State == ConnectionState.Open)
+            {
+                OracleCommand cmd = new OracleCommand("PKC_USER.GET_ID_BY_USERNAME", con);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+
+                //return 
+                OracleParameter output = new OracleParameter();
+                output.ParameterName = "RETURN_ID";
+                output.Direction = ParameterDirection.ReturnValue;
+                output.OracleDbType = OracleDbType.Int64;
+
+
+                cmd.Parameters.Add(output);
+
+                // input
+                OracleParameter input = new OracleParameter();
+                input.Value = username;
+                input.ParameterName = "USERNAME";
+                input.OracleDbType = OracleDbType.Varchar2;
+
+                cmd.Parameters.Add(input);
+
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    id = Convert.ToInt32(output.Value.ToString());
+
+                }
+                catch (Exception ex)
+                {
+
+                    Console.WriteLine(ex.Message);
+                }
+
+
+
+                output.Dispose();
+                cmd.Dispose();
+            }
+
+            con.Dispose();
+
+            return id;
+        }
+
+        public User GetWithPropertiesById(int id)
+        {
+            // create a connection to the database
+            // change values as needed for your environment
+            OracleConnection con = new OracleConnection(ConnectionString.GetConnectionString());
+
+            // attempt to open the connection
+            try
+            {
+                con.Open();
+            }
+            catch (OracleException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            User user = new User();
+
+            // only call our methods if we are connected
+            // to the database
+            if (con.State == ConnectionState.Open)
+            {
+                // create the command object and set attributes
+                OracleCommand cmd = new OracleCommand("PKC_USER.GET_USER_WITH_PROPERTIES_BY_ID", con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                //return 
+                OracleParameter output = new OracleParameter();
+                output.OracleDbType = OracleDbType.RefCursor;
+                output.Direction = ParameterDirection.ReturnValue;
+
+                cmd.Parameters.Add(output);
+
+                // input
+                OracleParameter input = new OracleParameter();
+                input.Value = id;
+                input.ParameterName = "ID";
+
+                cmd.Parameters.Add(input);
+
+                // create a data adapter to use with the data set
+                OracleDataAdapter da = new OracleDataAdapter(cmd);
+
+                // create the data set
+                DataSet ds = new DataSet();
+
+                // fill the data set
+                da.Fill(ds);
+
+
+                foreach (DataTable table in ds.Tables)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+                        user = new User()
+                        {
+                            Id = Convert.ToInt32(row[0]),
+                            Name = row[1].ToString(),
+                            Surname = row[2].ToString(),
+                            Username = row[3].ToString(),
+                            Email = row[4].ToString(),
+                            Password = row[5].ToString(),
+                            LocationLatitude = row[6].ToString(),
+                            LocationLongitude = row[7].ToString(),
+                            LocationMarkAs = row[8].ToString(),
+                            ImageName = row[9].ToString()
+                        };
+                        break;
+                    }
+                }
+
+                // clean up our objects release resources
+                ds.Dispose();
+                da.Dispose();
+                output.Dispose();
+                cmd.Dispose();
+            }
+
+            // clean up the connection object
+            con.Dispose();
+
+            return user;
         }
     }
 }

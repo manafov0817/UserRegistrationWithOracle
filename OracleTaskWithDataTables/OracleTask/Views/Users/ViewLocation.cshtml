@@ -1,0 +1,33 @@
+﻿@model SetLocationDTO
+@{
+	Layout = null;
+}
+
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="~/lib/leaflet/dist/leaflet.css" />
+<!-- Load Leaflet from CDN -->
+<link rel="stylesheet" href="~/lib/leaflet/dist/leaflet.css" />
+
+<!-- Load Esri Leaflet Geocoder from CDN -->
+<link rel="stylesheet" href="~/lib/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css">
+
+<div style="margin: 0;	padding: 0;">
+
+	<div id="map" style="width: 100%; height: 60vh;" class="mb-2 mt-1">
+	</div>
+
+	<input id="viewlat" hidden value="@Model.Latitude" type="text" />
+	<input id="viewlng" hidden value="@Model.Longitude" type="text" />
+	<input id="viewmark" value="@Model.MarkAs" type="text" />
+</div>
+
+<script src="~/lib/leaflet/dist/leaflet.js"></script>
+
+<!-- Load Esri Leaflet from CDN -->
+<script src="~/lib/esri-leaflet/dist/esri-leaflet.js"></script>
+
+<script src="~/lib/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.js"></script>
+
+<script src="~/js/viewlocation.js"></script>

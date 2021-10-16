@@ -14,5 +14,10 @@ namespace OracleTask.Entity.Entities
         public string Username { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string LocationLatitude { get; set; }
+        public string LocationLongitude { get; set; }
+        public string LocationMarkAs { get; set; }
+        public string ImageName { get; set; }
+
     }
 }

@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 namespace OracleTask.Data.Abstract
 {
     public interface IUserRepository : IGenericRepository<User>
-    {   
-    public bool ExistById(int id);
+    {
+        public ICollection<User> GetAllWithProperties();
+        int GetIdByUsername(string username);
+        User GetWithPropertiesById(int id);
     }
 }

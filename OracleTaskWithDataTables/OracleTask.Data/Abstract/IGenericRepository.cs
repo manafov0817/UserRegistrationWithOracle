@@ -13,5 +13,6 @@ namespace OracleTask.Data.Abstract
         void Update(T entity);
         void Delete(int id);
         T GetById(int id);
+        bool ExistById(int id);
     }
 }

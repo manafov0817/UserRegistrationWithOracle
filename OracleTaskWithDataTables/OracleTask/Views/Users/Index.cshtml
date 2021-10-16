@@ -1,20 +1,20 @@
-﻿@model IEnumerable<UserDTO>
+﻿@model IEnumerable<UserDTOIndex>
 
 @{
-	ViewData["Title"] = "Index";
+	ViewData["Title"] = "Users";
 }
 
-<h1>Index</h1>
+<h1>Users</h1>
 
 <hr />
 
-<p>	
+<p>
 	<a onclick="showInPopup('@Url.Action("Create", "Users", null,Context.Request.Scheme)','New User')" class="btn btn-success text-white">New User</a>
 </p>
 
 <link href="~/lib/datatables/css/dataTables.bootstrap4.css" rel="stylesheet" />
 
- 
+
 <div class="container">
 	<br />
 	<div style="">
@@ -23,6 +23,9 @@
 				<tr>
 					<th>
 						Id
+					</th>
+					<th>
+						Photo
 					</th>
 					<th>
 						Name
@@ -40,6 +43,9 @@
 						Password
 					</th>
 					<th>
+						Location
+					</th>
+					<th>
 						Edit
 					</th>
 					<th>
@@ -51,37 +57,52 @@
 	</div>
 </div>
 
-<div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">     
-		  </div>      
-    </div>
-  </div>
+<div class="modal fade" id="add-modal" tabindex="1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel"></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+			</div>
+		</div>
+	</div>
 </div>
 
-<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog"  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">     
-		  </div>      
-    </div>
-  </div>
+<div class="modal fade" id="edit-modal" tabindex="2" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel"></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+			</div>
+		</div>
+	</div>
 </div>
 
-@section Scripts{
-<script src="~/lib/datatables/js/jquery.dataTables.js" /></script>
-<script src="~/lib/datatables/js/dataTables.bootstrap4.js" /></script>
-}
+
+<div class="modal fade" id="show-map-modal" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel"></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				
+
+
+			</div>
+		</div>
+	</div>
+</div>
+

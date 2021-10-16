@@ -2,10 +2,28 @@
   "version": "1.0",
   "defaultProvider": "cdnjs",
   "libraries": [
-
     {
       "library": "datatables@1.10.21",
       "destination": "wwwroot/lib/datatables/"
+    },
+    {
+      "library": "select2@4.1.0-rc.0",
+      "destination": "wwwroot/lib/select2/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "leaflet@1.7.1",
+      "destination": "wwwroot/lib/leaflet/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "esri-leaflet@3.0.3",
+      "destination": "wwwroot/lib/esri-leaflet/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "esri-leaflet-geocoder@3.1.1",
+      "destination": "wwwroot/lib/esri-leaflet-geocoder/"
     }
   ]
 }

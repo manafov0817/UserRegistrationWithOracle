@@ -1,0 +1,51 @@
+﻿@*@model LocationDTO
+
+@{
+	ViewData["Title"] = "Create";
+	Layout = null;
+}
+<div class="row">
+	<div class="col-md-12">
+		<form asp-action="Create" onsubmit="return jQueryAjaxAddLocation(this);">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group">
+				<label asp-for="MarkAs" class="control-label"></label>
+				<input asp-for="MarkAs" class="form-control" />
+				<span asp-validation-for="MarkAs" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="FullLocation" class="control-label"></label>
+				<input asp-for="FullLocation" class="form-control" />
+				<span asp-validation-for="FullLocation" class="text-danger"></span>
+				</div>
+			<div class="form-group">
+				<label asp-for="FullLocation" class="control-label"></label>
+				<input asp-for="FullLocation" class="form-control" />
+				<span asp-validation-for="FullLocation" class="text-danger"></span>
+				<br />
+				<a onclick="showInPopupLocation('@Url.Action("ChooseLocation", "Location", null,Context.Request.Scheme)','New Location')" class="btn btn-success text-white">Choose Location</a>
+
+				<input type="submit" hidden id="lngVal" class="btn btn-primary" value="49.847516">
+				<input type="submit" hidden id="latVal" class="btn btn-primary" value="40.373311">
+
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<input type="submit" value="Create" class="m-md-auto col-md-9 btn btn-primary" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<input type="submit" value="Close" class="m-md-auto col-md-9 btn btn-danger" />
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+*@
+@*
+@section Scripts {
+    @{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}*@

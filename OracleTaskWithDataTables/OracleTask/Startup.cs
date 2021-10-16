@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OracleTask.Data.Abstract;
-using OracleTask.Data.Concrete.ADO.NET;
+using OracleTask.Data.Concrete.ODP.NET;
 using OracleTask.Mapping;
 using System;
 using System.Collections.Generic;
@@ -26,11 +26,15 @@ namespace OracleTask
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(UserMapping));
+            services.AddAutoMapper(typeof(OracleTaskMapping));
 
             services.AddControllersWithViews();
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ICityRepository, CityRepository>();
+            services.AddScoped<ILocationRepository, LocationRepository>();
+            services.AddScoped<IImageRepository, ImageRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +61,7 @@ namespace OracleTask
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Users}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
